@@ -7,7 +7,28 @@ const Command = require('../command.js');
 
 
 describe("Rover class", function() {
+beforeEach(() => {
+rover = new Rover(98382);
+commands = [ new Command('STATUS_CHECK'),
+new Command('MODE_CHANGE', 'NORMAL')];
+message = new Message('Test message with two commands', commands);
+});
 
+it("should set position based on constructor argument", function() {
+expect(rover.position).toEqual(98382);
+});
+
+it("should set default mode to 'NORMAL' and process commands correctly", function()
+{
+  let response = rover.recieveMessages(message);
+  expect(rover.mode).toEqual('NORMAL');
+  expect(response.results[0].roverStatus.mode).toEqual('NORMAL');
+});
+
+it("should set defualt mode to 'NORMAL' and generatorWatts to 110", function()
+{let response = rover.recieveMessages(message);
+  expect(rover.mode).toEqual('NORMAL');
+});
   // 7 tests here!
 
 });
