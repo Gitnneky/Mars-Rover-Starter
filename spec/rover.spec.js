@@ -58,9 +58,9 @@ expect(response.mode[0].completed).toEqual('LOW_POWER');
 
 // 12 test - responds with a false completed value when attempting to move in LOW_POWER mode:
 it("responds with a false completed value when attempting to move in LOWER_MODE", function(){
-let testPosition = new Rover(56570);
 let commands = [new Command('MODE_CHANGE', 'LOWER_CHANGE'), new command('MOVE', 1234)];
 let message = new Message('Test message for move in LOW_POWER mode', commads);
+let testPosition = new Rover(56570);
 let response = testPosition.receiveMessage(message);
 expect(response.results[1].toEqual({completed:false}));
 expect(testPosition.position).toEqual(56570);
