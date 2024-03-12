@@ -59,24 +59,49 @@ expect(response.results[0].completed).toEqual(true);
 // expect(response.mode[0].completed).toEqual('LOW_POWER');
 // });
 
+// it("responds correctly to the mode change command", function(){
+//   let testPosition = new Rover(56579);
+//   let commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
+//   let message = new Message('Test message for MODE_CHANGE', commands);
+//   let response = testPosition.receiveMessage(message);
+//   expect(response.results[0].completed).toEqual(true);
+//   expect(testPosition.mode).toEqual('LOW_POWER');
+//   }); 
+
+it("responds correctly to the mode change command", function() {
+  let testPosition = new Rover(56579);
+  let commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
+  let message = new Message('Test message for MODE_CHANGE', commands);
+  let response = testPosition.receiveMessage(message);
+  expect(response.results[0].completed).toEqual(true);
+  expect(testPosition.mode).toEqual('LOW_POWER');
+});
+
+
+
+
+
+
 // // 12 test - responds with a false completed value when attempting to move in LOW_POWER mode:
-// it("responds with a false completed value when attempting to move in LOWER_MODE", function(){
-// let testPosition = new Rover(56570);
-// let commands = [new Command('MODE_CHANGE', 'LOWER_CHANGE'), new command('MOVE', 1234)];
-// let message = new message('Test message for move in LOW_POWER mode', commads);
-// let response = testPosition.receiveMessage(message);
+it("responds with a false completed value when attempting to move in LOWER_MODE", function(){
+let testPosition = new Rover(56570);
+let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 1234)];
+let message = new Message('Test message for move in LOW_POWER mode', commands);
+let response = testPosition.receiveMessage(message);
+expect(response.results[1].completed).toEqual(false);
 // expect(response.results[1].toEqual({completed:false}));
-// expect(testPosition.position).toEqual(56570);
-// });
+expect(testPosition.position).toEqual(56570);
+});
 
 // // 13 test - responds with the position for the move command:
-// it("responds for the position for the move command", function(){
-// let testPosition = new Rover(56571);
-// let commands = [new command('MOVE', 12345)];
-// let message = new message('Test message for position for the move command', commands);
-// let response = testPosition.receiveMessage(message);
+it("responds for the position for the move command", function(){
+let testPosition = new Rover(56571);
+let commands = [new Command('MOVE', 12345)];
+let message = new Message('Test message for position for the move command', commands);
+let response = testPosition.receiveMessage(message);
+expect(response.results[0].completed).toEqual(true);
 // expect(response.results[0]).toEqual({completed: true});
-// expect(testPosition.position).toEqual(12345);
-// });
+expect(testPosition.position).toEqual(12345);
+});
 
 });
